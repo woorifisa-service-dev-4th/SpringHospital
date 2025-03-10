@@ -1,38 +1,35 @@
-<html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
 <body>
+<h2>Owner</h2>
 
-  <h2>
-    <th:block th:if="${pet['new']}">New </th:block>
-    Pet
-  </h2>
-  <form th:object="${pet}" class="form-horizontal" method="post">
-    <input type="hidden" name="id" th:value="*{id}" />
-    <div class="form-group has-feedback">
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Owner</label>
-        <div class="col-sm-10">
-          <span th:text="${owner?.firstName + ' ' + owner?.lastName}" />
-        </div>
-      </div>
-      <input
-        th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}" />
-      <input
-        th:replace="~{fragments/inputField :: input ('Birth Date', 'birthDate', 'date')}" />
-      <input
-        th:replace="~{fragments/selectField :: select ('Type', 'type', ${types})}" />
+<form th:action="${isNew} ? @{/owners/new} : @{/owners/edit/{ownerId}(ownerId=${owner.id})}"
+      th:object="${owner}"
+      method="post"
+      class="form-horizontal"
+      id="owner-form">
+
+  <input type="hidden" th:if="!${isNew}" name="_method" value="put" />
+
+  <div class="form-group has-feedback">
+    <input th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+    <input th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+    <input th:replace="~{fragments/inputField :: input ('Address', 'address', 'text')}" />
+    <input th:replace="~{fragments/inputField :: input ('City', 'city', 'text')}" />
+    <input th:replace="~{fragments/inputField :: input ('Telephone', 'telephone', 'text')}" />
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-primary" type="submit"
+              th:text="${isNew} ? 'Add Owner' : 'Update Owner'">
+        Add Owner
+      </button>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button
-          th:with="text=${pet['new']} ? 'Add Pet' : 'Update Pet'"
-          class="btn btn-primary" type="submit" th:text="${text}">Add
-          Pet</button>
-      </div>
-    </div>
-  </form>
+  </div>
+</form>
 
 </body>
-
 </html>

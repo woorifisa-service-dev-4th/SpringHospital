@@ -1,3 +1,4 @@
+
 package dev.spring.petclinic.domain;
 
 import lombok.Getter;
@@ -15,5 +16,11 @@ public class PetType {
 
     @Column(name = "name")
     private String name;
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
 }
 

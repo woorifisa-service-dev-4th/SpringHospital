@@ -34,5 +34,10 @@ public class Pet {
 
     @OneToMany(mappedBy = "pet")
     private List<Visit> visits = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
 
