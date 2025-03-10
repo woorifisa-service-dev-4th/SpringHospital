@@ -18,16 +18,20 @@ public class OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    public List<OwnerDto> findOwnersByLastName(String lastName) {
-        return ownerRepository.findByLastNameContaining(lastName).stream()
-                .map(OwnerDto::fromEntity)
-                .collect(Collectors.toList());
+//    public List<OwnerDto> findOwnersByLastName(String lastName) {
+//        return ownerRepository.findByLastNameContaining(lastName).stream()
+//                .map(OwnerDto::fromEntity)
+//                .collect(Collectors.toList());
+//    }
+
+    public List<Owner> findOwnersByLastName(String lastName) {
+        return ownerRepository.findByLastNameContaining(lastName);
     }
 
-    public OwnerDetailDto getOwnerDetail(Integer ownerId) {
+    public Owner getOwnerDetail(Integer ownerId) {
         Owner owner = ownerRepository.findById(ownerId)
                 .orElseThrow(() -> new EntityNotFoundException("Owner not found"));
-        return OwnerDetailDto.fromEntity(owner);
+        return owner;
     }
 
     public void editOwner(Integer ownerId, EditOwnerRequest request) {
