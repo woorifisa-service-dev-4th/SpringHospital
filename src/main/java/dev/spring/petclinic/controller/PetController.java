@@ -1,6 +1,6 @@
 package dev.spring.petclinic.controller;
 
-<<<<<<< HEAD
+
 import dev.spring.petclinic.domain.Owner;
 import dev.spring.petclinic.domain.PetType;
 import dev.spring.petclinic.dto.AddNewPetRequest;
@@ -16,15 +16,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/owners")
-=======
-import dev.spring.petclinic.service.PetService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
 @RequiredArgsConstructor
 @RequestMapping("/pets")
 public class PetController {
@@ -46,7 +37,6 @@ public class PetController {
         return "pets/createOrUpdatePetForm";  // Thymeleaf 템플릿 경로
     }
 
-<<<<<<< HEAD
     // 4. 새로운 펫 추가
     @PostMapping("/{ownerId}/pets/new")
     public String addNewPet(@PathVariable Integer ownerId, @ModelAttribute AddNewPetRequest request) {
@@ -63,8 +53,4 @@ public class PetController {
         return petService.getPetAndVisits(petId);
     }
 }
-=======
-//    @GetMapping("")
-//    public String
-}
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
+

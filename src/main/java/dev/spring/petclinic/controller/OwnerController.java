@@ -2,42 +2,33 @@ package dev.spring.petclinic.controller;
 
 import dev.spring.petclinic.domain.Owner;
 import dev.spring.petclinic.dto.EditOwnerRequest;
-<<<<<<< HEAD
 import dev.spring.petclinic.dto.FindOwnerDto;
 import dev.spring.petclinic.dto.OwnerDetailDto;
-=======
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
 import dev.spring.petclinic.dto.OwnerDto;
 import dev.spring.petclinic.repository.OwnerRepository;
 import dev.spring.petclinic.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-=======
 import org.springframework.validation.BindingResult;
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
+
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-<<<<<<< HEAD
 @RequestMapping("/owners")
-=======
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
 @RequiredArgsConstructor
 @RequestMapping("/owners")
 public class OwnerController {
 
     private final OwnerService ownerService;
     private final OwnerRepository ownerRepository;
-
-<<<<<<< HEAD
     @GetMapping("/find")
     public String showFindForm(Model model) {
-        model.addAttribute("owner", new FindOwnerDto());  // ⭐ 빈 객체 추가
+        model.addAttribute("owner", new FindOwnerDto());  
         return "owners/findOwners";
     }
 
@@ -60,13 +51,13 @@ public class OwnerController {
         Owner ownerDetail = ownerService.getOwnerDetail(ownerId);
         model.addAttribute("owner", ownerDetail);  // owner 정보를 모델에 추가
         return "owners/ownerDetails";  // 템플릿 이름 (예: ownerDetail.html)
-=======
     @GetMapping("/new")
     public String createOwnerForm(Model model) {
         model.addAttribute("owner", new Owner());
         model.addAttribute("isNew", true); // 신규 등록 여부 확인을 위한 변수 추가
         return "owners/createOrUpdateOwnerForm";
     }
+
 
     @PostMapping("/new")
     public String processAddOwnerForm(@ModelAttribute("owner") Owner owner,
@@ -80,7 +71,6 @@ public class OwnerController {
         List<Owner> all = ownerService.findAll();
         model.addAttribute("listOwners",all);
         return "redirect:/owners/list";
->>>>>>> 60d47703054b3d3f2df237e2ebcb5b7a1a8dd6ad
     }
 
     @GetMapping("/list")
@@ -101,6 +91,7 @@ public class OwnerController {
         model.addAttribute("owner", owner);
         model.addAttribute("isNew", false); // 기존 데이터 수정이므로 false 설정
         return "owners/createOrUpdateOwnerForm";
+
     }
 
     @GetMapping("/ownerDetails/{ownerId}/edit")
