@@ -42,5 +42,18 @@ public class OwnerService {
 
         ownerRepository.save(owner);
     }
+
+    public void saveOwner(Owner owner){
+        ownerRepository.save(owner);
+    }
+
+    public List<Owner> findAll(){
+        List<Owner> all = ownerRepository.findAll();
+        return all;
+    }
+
+//    public Owner findById(Long id){
+//        ownerRepository.findById(id);
+//    }
 }
 

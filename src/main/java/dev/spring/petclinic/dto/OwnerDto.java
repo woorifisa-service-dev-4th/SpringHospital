@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 
 @Data
 public class OwnerDto {
-    private String name;
+    private Integer id; // ✅ ID 추가
+    private String firstName; // ✅ 개별 필드 유지
+    private String lastName;
     private String address;
     private String city;
     private String telephone;
@@ -17,11 +19,15 @@ public class OwnerDto {
 
     public static OwnerDto fromEntity(Owner owner) {
         OwnerDto dto = new OwnerDto();
-        dto.setName(owner.getFirstName() + " " + owner.getLastName());
+        dto.setId(owner.getId()); // ✅ ID 추가
+        dto.setFirstName(owner.getFirstName()); // ✅ 개별 필드 저장
+        dto.setLastName(owner.getLastName());
         dto.setAddress(owner.getAddress());
         dto.setCity(owner.getCity());
         dto.setTelephone(owner.getTelephone());
-        dto.setPets(owner.getPets().stream().map(Pet::getName).collect(Collectors.toList()));
+        dto.setPets(owner.getPets().stream()
+                .map(Pet::getName) // Pet 이름 리스트 변환
+                .collect(Collectors.toList()));
         return dto;
     }
 }
