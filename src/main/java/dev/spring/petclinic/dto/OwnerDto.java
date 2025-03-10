@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @Data
 public class OwnerDto {
+
     private Integer id; // ✅ ID 추가
     private String firstName; // ✅ 개별 필드 유지
     private String lastName;
@@ -19,6 +20,7 @@ public class OwnerDto {
 
     public static OwnerDto fromEntity(Owner owner) {
         OwnerDto dto = new OwnerDto();
+
         dto.setId(owner.getId()); // ✅ ID 추가
         dto.setFirstName(owner.getFirstName()); // ✅ 개별 필드 저장
         dto.setLastName(owner.getLastName());
